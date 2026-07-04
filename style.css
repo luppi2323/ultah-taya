@@ -1,0 +1,115 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+body { height: 100vh; overflow: hidden; background-color: #1a0b14; color: #4a154b; }
+
+.bg-animated { position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, #ffd1dc 0%, #ffb6c1 30%, #d81b60 100%); background-size: cover; animation: pulseBg 12s infinite alternate; z-index: -2; opacity: 0.9; }
+@keyframes pulseBg { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+
+#confetti-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 10; overflow: hidden; }
+.confetti-piece { position: absolute; top: -20px; opacity: 0.8; animation: fall linear forwards; }
+@keyframes fall { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+
+.app-container { position: relative; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; z-index: 20; }
+
+.slide { position: absolute; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; opacity: 0; transform: translateY(40px) scale(0.95); pointer-events: none; transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1); }
+.slide.active { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+
+.glass-panel { background: rgba(255, 255, 255, 0.35); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 35px; padding: 50px 40px; width: 90%; max-width: 420px; text-align: center; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15); }
+.elegant-glow { position: relative; }
+.elegant-glow::before { content: ""; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(45deg, #ff69b4, #ffffff, #d81b60); z-index: -1; border-radius: 37px; filter: blur(15px); opacity: 0.4; animation: glowPulse 4s infinite alternate; }
+@keyframes glowPulse { 0% { opacity: 0.3; } 100% { opacity: 0.6; } }
+
+h2 { font-family: 'Playfair Display', serif; color: #880e4f; margin-bottom: 10px; font-size: 1.7rem; line-height: 1.3; }
+p { color: #4a154b; font-size: 0.95rem; margin-bottom: 25px; font-weight: 500; }
+
+.pin-display { display: flex; justify-content: center; gap: 12px; margin-bottom: 35px; height: 20px; }
+.dot { width: 16px; height: 16px; border-radius: 50%; background: rgba(255, 255, 255, 0.5); border: 2px solid #ff4081; transition: all 0.3s ease; }
+.dot.filled { background: #c2185b; transform: scale(1.2); }
+
+.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.key { background: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%; width: 70px; height: 70px; font-size: 1.6rem; color: #c2185b; font-weight: 600; cursor: pointer; margin: 0 auto; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 5px 15px rgba(216, 27, 96, 0.1); }
+.key:active { transform: scale(0.9); }
+.action-key { font-size: 1.2rem; background: linear-gradient(135deg, #ff8fa3, #ff4d6d); color: white; }
+
+.shake { animation: shakeError 0.5s; }
+@keyframes shakeError { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-12px); } 40%, 80% { transform: translateX(12px); } }
+
+.options { display: flex; flex-direction: column; gap: 15px; }
+.opt-btn { background: rgba(255, 255, 255, 0.9); border: 2px solid transparent; padding: 16px; border-radius: 20px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; color: #880e4f; font-weight: 600; }
+.opt-btn.error { background: #ffcdd2; border-color: #d32f2f; color: #b71c1c; animation: shakeError 0.4s; }
+
+/* --- LOADING KADO (TANPA CARD) --- */
+.loading-content { display: flex; flex-direction: column; align-items: center; width: 80%; max-width: 300px; text-align: center; }
+.gift-box { font-size: 5rem; display: inline-block; transition: transform 0.2s; text-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+.gift-shake { animation: shakeGift 0.3s infinite; }
+@keyframes shakeGift { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-10deg) scale(1.1); } 75% { transform: rotate(10deg) scale(1.1); } }
+.loading-text { color: #fff; margin-top: 15px; font-size: 1.3rem; text-shadow: 0 2px 10px rgba(216, 27, 96, 0.8); font-weight: 600; letter-spacing: 1px; }
+.loading-container { width: 100%; height: 12px; background: rgba(255, 255, 255, 0.3); border-radius: 10px; margin-top: 20px; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.1); }
+.loading-bar { width: 0%; height: 100%; background: linear-gradient(90deg, #ff69b4, #fff); border-radius: 10px; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px rgba(255, 105, 180, 0.8); }
+
+/* --- SLIDE 3: ENVELOPE --- */
+.envelope-wrapper { cursor: pointer; position: relative; padding: 40px 20px; text-align: center; perspective: 1000px; }
+.envelope { position: relative; width: 340px; height: 230px; background: #d81b60; margin: 0 auto 30px; border-radius: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+.envelope-paper { position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px; background: #fff; border-radius: 5px; z-index: 1; display: flex; flex-direction: column; padding: 30px 20px; transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 0 -5px 15px rgba(0,0,0,0.1); }
+.envelope-paper p { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #c2185b; text-align: center; margin-bottom: 20px; }
+.paper-lines { height: 2px; background: #ffb6c1; margin-bottom: 15px; border-radius: 2px; width: 100%; }
+.paper-lines:last-child { width: 60%; }
+.envelope::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-left: 170px solid #e91e63; border-right: 170px solid #e91e63; border-bottom: 115px solid #f06292; border-top: 115px solid transparent; border-radius: 10px; z-index: 2; pointer-events: none; }
+.envelope-flap { position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 170px solid transparent; border-right: 170px solid transparent; border-top: 130px solid #c2185b; transform-origin: top; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); z-index: 4; }
+.wax-seal { position: absolute; top: 110px; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: radial-gradient(circle at 30% 30%, #ff4d6d, #b71c1c); border-radius: 50%; z-index: 5; box-shadow: 0 4px 10px rgba(0,0,0,0.4), inset 0 -2px 5px rgba(0,0,0,0.3); color: #fff; font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 50px; text-align: center; transition: opacity 0.3s; animation: pulseSeal 2s infinite; }
+@keyframes pulseSeal { 0% { box-shadow: 0 0 0 0 rgba(216, 27, 96, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(216, 27, 96, 0); } 100% { box-shadow: 0 0 0 0 rgba(216, 27, 96, 0); } }
+.envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 0; }
+.envelope-wrapper.open .wax-seal { opacity: 0; }
+.envelope-wrapper.open .envelope-paper { transform: translateY(-200px) scale(1.1); z-index: 3; }
+.envelope-text { font-weight: 600; font-size: 1.2rem; color: #fff; margin-top: 30px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+
+/* --- SLIDE 4: Final Letter --- */
+.final-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(25px); width: 90%; max-width: 550px; border-radius: 25px; padding: 0 30px 40px 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.2); display: flex; flex-direction: column; margin-top: 60px; }
+.photo-container { width: 150px; height: 150px; margin: -75px auto 25px auto; border-radius: 50%; border: 6px solid #fff; box-shadow: 0 15px 25px rgba(216, 27, 96, 0.2); overflow: hidden; background: #ffb6c1; flex-shrink: 0; }
+.photo-container img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+/* Scrollbar dihilangkan secara visual tapi tetap bisa scroll */
+.letter-content { max-height: 45vh; overflow-y: auto; text-align: justify; scrollbar-width: none; -ms-overflow-style: none; }
+.letter-content::-webkit-scrollbar { display: none; }
+.letter-content p { font-size: 1rem; line-height: 1.8; color: #333; margin-bottom: 20px; font-weight: 400; min-height: 28px; }
+
+
+/* =========================================
+   RESPONSIVE DESIGN (MOBILE & TABLET FRIENDLY)
+   ========================================= */
+
+/* Tablet (Layar Sedang) */
+@media (max-width: 768px) {
+    .glass-panel { padding: 40px 25px; width: 92%; }
+    h2 { font-size: 1.5rem; }
+    .key { width: 60px; height: 60px; font-size: 1.4rem; }
+    .action-key { font-size: 1.1rem; }
+    
+    .envelope-wrapper { transform: scale(0.9); padding: 20px 10px; }
+    
+    .final-card { width: 92%; margin-top: 50px; }
+    .photo-container { width: 130px; height: 130px; margin: -65px auto 20px auto; }
+}
+
+/* Smartphone (Layar Kecil) */
+@media (max-width: 480px) {
+    .glass-panel { padding: 30px 20px; width: 95%; }
+    h2 { font-size: 1.3rem; }
+    p { font-size: 0.85rem; margin-bottom: 20px; }
+    
+    .keypad { gap: 12px; }
+    .key { width: 55px; height: 55px; font-size: 1.3rem; }
+    .action-key { font-size: 1rem; }
+    .pin-display { margin-bottom: 25px; gap: 8px; }
+    .dot { width: 14px; height: 14px; }
+    
+    .opt-btn { padding: 12px; font-size: 1rem; }
+    
+    .gift-box { font-size: 4rem; }
+    .loading-text { font-size: 1.1rem; }
+    
+    .envelope-wrapper { transform: scale(0.8); padding: 10px; }
+    
+    .final-card { width: 95%; padding: 0 20px 30px 20px; margin-top: 40px; }
+    .photo-container { width: 110px; height: 110px; margin: -55px auto 15px auto; border-width: 4px; }
+    .letter-content p { font-size: 0.9rem; line-height: 1.7; margin-bottom: 15px; }
+}

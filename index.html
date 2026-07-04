@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Taya! 🌸</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Animasi Background & Confetti -->
+    <div class="bg-animated"></div>
+    <div id="confetti-container"></div>
+
+    <div class="app-container">
+        
+        <!-- SLIDE 1: Lock Screen / PIN -->
+        <section id="slide-1" class="slide active">
+            <div class="glass-panel elegant-glow">
+                <h2>Masukkan PIN</h2>
+                <p>Clue: Hari spesialmu (DDMMYYYY)</p>
+                <div class="pin-display" id="pin-display"></div>
+                <div class="keypad">
+                    <button class="key" onclick="pressKey('1')">1</button>
+                    <button class="key" onclick="pressKey('2')">2</button>
+                    <button class="key" onclick="pressKey('3')">3</button>
+                    <button class="key" onclick="pressKey('4')">4</button>
+                    <button class="key" onclick="pressKey('5')">5</button>
+                    <button class="key" onclick="pressKey('6')">6</button>
+                    <button class="key" onclick="pressKey('7')">7</button>
+                    <button class="key" onclick="pressKey('8')">8</button>
+                    <button class="key" onclick="pressKey('9')">9</button>
+                    <button class="key action-key" onclick="clearPin()">C</button>
+                    <button class="key" onclick="pressKey('0')">0</button>
+                    <button class="key action-key" onclick="checkPin()">OK</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: Quiz -->
+        <section id="slide-2" class="slide">
+            <div class="glass-panel quiz-panel elegant-glow">
+                <h2>Jawab dulu, yang mana menjadi minuman favoritmu???</h2>
+                <div class="options">
+                    <button class="opt-btn" onclick="checkQuiz(false, this)">A. coffe</button>
+                    <button class="opt-btn correct-ans" onclick="checkQuiz(true, this)">B. matcha</button>
+                    <button class="opt-btn" onclick="checkQuiz(false, this)">C. coffee</button>
+                    <button class="opt-btn" onclick="checkQuiz(false, this)">D. coffeeeee</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2.5: Loading Kado (Tanpa Card) -->
+        <section id="slide-loading" class="slide">
+            <div class="loading-content">
+                <div class="gift-box" id="gift-box">🎁</div>
+                <h3 class="loading-text">Menyiapkan Hadiah...</h3>
+                <div class="loading-container">
+                    <div class="loading-bar" id="loading-bar"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: Elegant Envelope with Wax Seal -->
+        <section id="slide-3" class="slide">
+            <div class="envelope-wrapper" onclick="openEnvelope()">
+                <div class="envelope" id="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="wax-seal">T</div>
+                    <div class="envelope-paper">
+                        <p>Special for You!</p>
+                        <div class="paper-lines"></div>
+                        <div class="paper-lines"></div>
+                        <div class="paper-lines"></div>
+                    </div>
+                </div>
+                <p class="envelope-text">Ada surat buatmu 💌<br><small>(Ketuk segel untuk membuka)</small></p>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: Surat dan Foto -->
+        <section id="slide-4" class="slide">
+            <div class="final-card elegant-glow">
+                <div class="photo-container">
+                    <img src="ataya.png" alt="Foto Taya" id="taya-photo">
+                </div>
+                <div class="letter-content" id="letter-content">
+                    <p id="para-1"></p>
+                    <p id="para-2"></p>
+                    <p id="para-3"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Audio Player -->
+    <audio id="bg-music" loop>
+        <source src="musik1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
