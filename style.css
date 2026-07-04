@@ -37,7 +37,7 @@ p { color: #4a154b; font-size: 0.95rem; margin-bottom: 25px; font-weight: 500; }
 .opt-btn { background: rgba(255, 255, 255, 0.9); border: 2px solid transparent; padding: 16px; border-radius: 20px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; color: #880e4f; font-weight: 600; }
 .opt-btn.error { background: #ffcdd2; border-color: #d32f2f; color: #b71c1c; animation: shakeError 0.4s; }
 
-/* --- LOADING KADO (TANPA CARD) --- */
+/* --- LOADING KADO --- */
 .loading-content { display: flex; flex-direction: column; align-items: center; width: 80%; max-width: 300px; text-align: center; }
 .gift-box { font-size: 5rem; display: inline-block; transition: transform 0.2s; text-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 .gift-shake { animation: shakeGift 0.3s infinite; }
@@ -63,13 +63,29 @@ p { color: #4a154b; font-size: 0.95rem; margin-bottom: 25px; font-weight: 500; }
 .envelope-text { font-weight: 600; font-size: 1.2rem; color: #fff; margin-top: 30px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 
 /* --- SLIDE 4: Final Letter --- */
-.final-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(25px); width: 90%; max-width: 550px; border-radius: 25px; padding: 0 30px 40px 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.2); display: flex; flex-direction: column; margin-top: 60px; }
-.photo-container { width: 150px; height: 150px; margin: -75px auto 25px auto; border-radius: 50%; border: 6px solid #fff; box-shadow: 0 15px 25px rgba(216, 27, 96, 0.2); overflow: hidden; background: #ffb6c1; flex-shrink: 0; }
+.final-card { 
+    background: rgba(255, 255, 255, 0.95); 
+    backdrop-filter: blur(25px); 
+    width: 90%; 
+    max-width: 550px; 
+    border-radius: 25px; 
+    padding: 0 30px 40px 30px; 
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2); 
+    display: flex; 
+    flex-direction: column; 
+    margin-top: 30px; /* Dinaikkan sedikit posisinya */
+}
+.photo-container { 
+    width: 150px; height: 150px; 
+    margin: -75px auto 25px auto; 
+    border-radius: 50%; border: 6px solid #fff; 
+    box-shadow: 0 15px 25px rgba(216, 27, 96, 0.2); 
+    overflow: hidden; background: #ffb6c1; flex-shrink: 0; 
+}
 .photo-container img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
-/* Scrollbar dihilangkan secara visual tapi tetap bisa scroll */
-.letter-content { max-height: 45vh; overflow-y: auto; text-align: justify; scrollbar-width: none; -ms-overflow-style: none; }
-.letter-content::-webkit-scrollbar { display: none; }
+/* Menghapus limit max-height di mode normal agar teks muncul penuh tanpa scroll */
+.letter-content { text-align: justify; overflow: visible; }
 .letter-content p { font-size: 1rem; line-height: 1.8; color: #333; margin-bottom: 20px; font-weight: 400; min-height: 28px; }
 
 
@@ -83,14 +99,13 @@ p { color: #4a154b; font-size: 0.95rem; margin-bottom: 25px; font-weight: 500; }
     h2 { font-size: 1.5rem; }
     .key { width: 60px; height: 60px; font-size: 1.4rem; }
     .action-key { font-size: 1.1rem; }
-    
     .envelope-wrapper { transform: scale(0.9); padding: 20px 10px; }
     
-    .final-card { width: 92%; margin-top: 50px; }
+    .final-card { width: 92%; margin-top: 30px; }
     .photo-container { width: 130px; height: 130px; margin: -65px auto 20px auto; }
 }
 
-/* Smartphone (Layar Kecil) */
+/* Smartphone Portrait (Layar Kecil Posisi Berdiri) */
 @media (max-width: 480px) {
     .glass-panel { padding: 30px 20px; width: 95%; }
     h2 { font-size: 1.3rem; }
@@ -109,7 +124,23 @@ p { color: #4a154b; font-size: 0.95rem; margin-bottom: 25px; font-weight: 500; }
     
     .envelope-wrapper { transform: scale(0.8); padding: 10px; }
     
-    .final-card { width: 95%; padding: 0 20px 30px 20px; margin-top: 40px; }
+    /* Mengangkat kotak ke atas dan mengatur padding */
+    .final-card { width: 95%; padding: 0 20px 25px 20px; margin-top: 15px; }
     .photo-container { width: 110px; height: 110px; margin: -55px auto 15px auto; border-width: 4px; }
     .letter-content p { font-size: 0.9rem; line-height: 1.7; margin-bottom: 15px; }
+}
+
+/* Smartphone Landscape (Layar Kecil Posisi Tidur/Miring) */
+@media (max-height: 600px) and (orientation: landscape) {
+    .final-card { margin-top: 40px; padding-bottom: 15px; }
+    .photo-container { width: 90px; height: 90px; margin: -45px auto 10px auto; border-width: 3px; }
+    
+    /* Scroll khusus aktif saat HP ditidurkan agar tidak kepotong layar */
+    .letter-content { 
+        max-height: 45vh; 
+        overflow-y: auto; 
+        scrollbar-width: none; 
+        -ms-overflow-style: none; 
+    }
+    .letter-content::-webkit-scrollbar { display: none; }
 }
