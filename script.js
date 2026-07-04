@@ -16,6 +16,8 @@ const slide2 = document.getElementById("slide-2");
 const slideLoading = document.getElementById("slide-loading");
 const slide3 = document.getElementById("slide-3");
 const slide4 = document.getElementById("slide-4");
+const slide5 = document.getElementById("slide-5");
+const btnNext = document.getElementById("btn-next");
 
 // Fungsi Transisi Slide
 function goToSlide(currentSlide, nextSlide) {
@@ -133,14 +135,23 @@ function typeWriter(elementId, textString, speed, callback) {
 }
 
 function startTypewriter() {
-    // Kecepatan mengetik diperlambat dari 40 ke 75
     const speed = 75; 
     typeWriter("para-1", textPara1, speed, () => {
         typeWriter("para-2", textPara2, speed, () => {
-            typeWriter("para-3", textPara3, speed);
+            typeWriter("para-3", textPara3, speed, () => {
+                // Munculkan tombol setelah semua teks selesai diketik
+                btnNext.classList.add("show");
+            });
         });
     });
 }
+
+// --- PINDAH KE SLIDE 5 (TULISAN AKHIR) ---
+btnNext.addEventListener("click", () => {
+    goToSlide(slide4, slide5);
+    // Tambahkan efek ledakan konfeti lagi untuk meramaikan slide terakhir
+    ledakanConfetti();
+});
 
 // --- EFEK CONFETTI ---
 const confettiContainer = document.getElementById("confetti-container");
